@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dr. Victoria Molina Dentist</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Figtree:wght@500;600;700;800&family=Fredoka:wght@500;600;700&family=Caveat:wght@600;700&display=swap">
+<style>
+/* Layout idea: bold "sticker" system (thick ink outlines, hard offset shadows, saturated flats) for the clinic;
+   the volunteer page keeps the same bones but tells its story with a night-sky scene, chapters and scrapbook photos. */
+:root{
+  --display:'Bricolage Grotesque','Arial Black',system-ui,sans-serif;
+  --body:'Figtree',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --story:'Fredoka','Trebuchet MS',system-ui,sans-serif;
+  --hand:'Caveat','Comic Sans MS',cursive;
+  --paper:#F7F5FF; --white:#FFFFFF; --ink:#15122E; --muted:#4B4768;
+  --violet:#5B2EFF; --coral:#FF6B8E; --sun:#FFD23F; --mint:#6EE7C2; --sky:#8FD3FF; --night:#1B1A4A;
+  --line:2.5px solid var(--ink); --sh:6px 6px 0 var(--ink); --r:28px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;color-scheme:light}
+body{margin:0;background:var(--paper);color:var(--ink);font:500 17px/1.6 var(--body);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+h1,h2,h3,h4{margin:0;text-wrap:balance}
+p{margin:0;text-wrap:pretty}
+ul,ol{margin:0;padding:0;list-style:none}
+section[id]{scroll-margin-top:96px}
+.wrap{width:min(1240px,100% - 48px);margin-inline:auto}
+:focus-visible{outline:3px solid var(--violet);outline-offset:3px}
+.dark :focus-visible,.night :focus-visible{outline-color:var(--sun)}
+.icon{width:1.25em;height:1.25em;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.spark{fill:currentColor;stroke:none}
+.eyebrow{display:inline-block;align-self:flex-start;font:800 13px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;padding:9px 14px;border:var(--line);border-radius:999px;background:var(--sun);color:var(--ink)}
+.h2{font:800 clamp(40px,5.4vw,80px)/.96 var(--display);letter-spacing:-.03em}
+.lead{font-size:19px;color:var(--muted);max-width:54ch}
+mark{background:var(--sun);color:var(--ink);padding:0 .14em;border-radius:.18em;display:inline-block;transform:rotate(-1.5deg);-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.section{padding:clamp(64px,9vw,120px) 0}
+.head{display:flex;flex-direction:column;gap:18px;margin-bottom:clamp(32px,5vw,56px)}
+
+/* sticker + buttons */
+.stk{border:var(--line);border-radius:var(--r);box-shadow:var(--sh);transition:transform .2s ease,box-shadow .2s ease}
+.stk:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--ink)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 26px;border:var(--line);border-radius:999px;box-shadow:4px 4px 0 var(--ink);font:800 16px/1 var(--body);text-decoration:none;cursor:pointer;color:var(--ink);background:var(--white);transition:transform .15s ease,box-shadow .15s ease}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.btn-violet{background:var(--violet);color:#fff}
+.btn-sun{background:var(--sun)}
+.btn-mint{background:var(--mint)}
+.btn-ink{background:var(--ink);color:#fff;box-shadow:4px 4px 0 var(--coral)}
+.btn-ink:hover{box-shadow:6px 6px 0 var(--coral)}
+.btn-sm{min-height:46px;padding:0 20px;font-size:15px}
+
+/* top bar */
+.demo{background:var(--ink);color:#fff;font-size:14px;font-weight:600;padding:8px 0;text-align:center}
+.hd{position:sticky;top:0;z-index:50;background:var(--paper);border-bottom:var(--line)}
+.hd .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:80px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.mark{position:relative;width:48px;height:48px;border:var(--line);border-radius:50%;background:var(--sun);display:grid;place-items:center;box-shadow:3px 3px 0 var(--ink)}
+.mark .icon{width:24px;height:24px}
+.brand-name{display:flex;flex-direction:column;line-height:1.05}
+.brand-name b{font:800 22px/1 var(--display);letter-spacing:-.02em}
+.brand-name span{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.nav{display:flex;align-items:center;gap:26px}
+.nav a:not(.btn){min-height:44px;display:inline-flex;align-items:center;font-weight:700;font-size:15px;text-decoration:none;border-bottom:3px solid transparent;transition:border-color .2s ease}
+.nav a:not(.btn):hover,.nav a[aria-current="page"]{border-bottom-color:var(--coral)}
+.menu-btn{display:none;width:50px;height:50px;border:var(--line);border-radius:50%;background:var(--white);box-shadow:3px 3px 0 var(--ink);align-items:center;justify-content:center;cursor:pointer;color:var(--ink)}
+
+/* hero */
+.hero{padding:clamp(40px,6vw,80px) 0 clamp(64px,8vw,104px)}
+.hero .wrap{display:grid;grid-template-columns:1.12fr .88fr;gap:clamp(32px,5vw,72px);align-items:center}
+h1.mega{font:800 clamp(52px,8vw,120px)/.9 var(--display);letter-spacing:-.04em;margin:22px 0 26px}
+.cta{display:flex;flex-wrap:wrap;gap:16px;margin:34px 0}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border:2px solid var(--ink);border-radius:999px;background:var(--white);font-size:14px;font-weight:700}
+.chip .icon{width:16px;height:16px;color:var(--violet)}
+.bento-hero{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.bh{position:relative;padding:24px;overflow:hidden}
+.bh-photo{grid-row:span 2;min-height:500px;background:var(--violet);color:#fff;display:flex;flex-direction:column;justify-content:space-between}
+.bh-photo .mono{font:800 clamp(72px,8vw,124px)/.85 var(--display);letter-spacing:-.05em;margin-top:40px}
+.bh-photo small{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.95}
+.bh-photo small:first-child{align-self:flex-end}
+.bh-tooth{background:var(--sun);display:grid;place-items:center;transform:rotate(2deg);min-height:230px}
+.bh-tooth svg{width:min(190px,100%);height:auto}
+.bh-next{background:var(--mint);display:flex;flex-direction:column;justify-content:space-between;gap:12px;transform:rotate(-1.5deg)}
+.bh-next small{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.bh-next b{font:800 26px/1.05 var(--display);letter-spacing:-.02em}
+.spin{position:absolute;left:-30px;top:-34px;z-index:3;width:120px;height:120px;border:var(--line);border-radius:50%;background:var(--coral);box-shadow:4px 4px 0 var(--ink);animation:spin 18s linear infinite}
+.spin text{font:800 11.5px var(--body);letter-spacing:.14em;fill:var(--ink)}
+.spin .core{position:absolute;inset:0;display:grid;place-items:center}
+
+/* marquee */
+.marquee{overflow:hidden;background:var(--ink);color:#fff;border-block:var(--line)}
+.marquee .track{display:flex;width:max-content;animation:slide 34s linear infinite}
+.marquee ul{display:flex;align-items:center;gap:36px;padding:18px 18px;flex:none}
+.marquee li{display:flex;align-items:center;gap:36px;font:800 24px/1 var(--display);letter-spacing:-.01em;white-space:nowrap}
+.marquee li::after{content:"";width:18px;height:18px;background:var(--sun);clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%)}
+
+/* services bento */
+.bento{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:minmax(230px,auto);gap:20px}
+.tile{position:relative;padding:28px;display:flex;flex-direction:column;justify-content:space-between;gap:22px;overflow:hidden}
+.tile .ic{width:58px;height:58px;border:var(--line);border-radius:50%;background:var(--white);display:grid;place-items:center;color:var(--ink);box-shadow:3px 3px 0 var(--ink)}
+.tile h3{font:800 clamp(26px,2.4vw,34px)/1 var(--display);letter-spacing:-.025em;margin:18px 0 10px}
+.tile p{font-size:16px}
+.tile .row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.dur{font-size:13px;font-weight:800;padding:6px 12px;border:2px solid var(--ink);border-radius:999px;background:rgba(255,255,255,.7);white-space:nowrap}
+.go{display:inline-flex;align-items:center;gap:8px;min-height:44px;font-weight:800;text-decoration:none;border-bottom:3px solid currentColor;transition:gap .2s ease}
+.go:hover{gap:14px}
+.t-big{grid-column:span 2;grid-row:span 2;background:var(--violet);color:#fff}
+.t-big .dur{color:var(--ink)}
+.t-big ul{display:flex;flex-direction:column;gap:10px;margin-top:6px}
+.t-big li{display:flex;gap:10px;align-items:flex-start}
+.t-big li .icon{color:var(--sun);margin-top:3px;width:1.1em;height:1.1em}
+.t-kids{background:var(--coral)}
+.t-fill{background:var(--sun)}
+.t-brace{background:var(--mint)}
+.t-white{background:var(--sky)}
+.t-wide{grid-column:1/-1;flex-direction:row;align-items:center;background:var(--ink);color:#fff;box-shadow:var(--sh);flex-wrap:wrap}
+.t-wide h3{margin:0 0 6px}
+.t-wide p{color:#D9D5F5}
+.t-wide .ic{background:var(--coral)}
+
+/* what to expect */
+.expect{background:var(--sun);border-block:var(--line)}
+.steps3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;counter-reset:s}
+.steps3 li{position:relative;padding:34px 28px 28px;background:var(--white)}
+.steps3 li::before{counter-increment:s;content:counter(s);position:absolute;top:-24px;left:24px;width:52px;height:52px;border:var(--line);border-radius:50%;background:var(--coral);display:grid;place-items:center;font:800 26px/1 var(--display);box-shadow:3px 3px 0 var(--ink)}
+.steps3 h3{font:800 30px/1 var(--display);letter-spacing:-.025em;margin:10px 0 10px}
+.steps3 p{color:var(--muted);font-size:16px}
+
+/* about */
+.about{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(32px,6vw,88px);align-items:center}
+.photo{position:relative;aspect-ratio:4/5;max-width:470px;width:100%;background:var(--coral);display:flex;flex-direction:column;justify-content:space-between;padding:24px;overflow:hidden}
+.photo .mono{font:800 clamp(110px,15vw,200px)/.85 var(--display);letter-spacing:-.05em}
+.photo small{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.sticker-note{position:absolute;right:18px;top:18px;padding:10px 14px;border:var(--line);border-radius:14px;background:var(--sun);font-weight:800;font-size:14px;transform:rotate(4deg);box-shadow:3px 3px 0 var(--ink)}
+.dl{display:grid;grid-template-columns:auto 1fr;gap:12px 26px;margin:30px 0;padding:24px 0;border-block:var(--line)}
+.dl dt{font-weight:800}
+.dl dd{margin:0;color:var(--muted)}
+.about p+p{margin-top:16px}
+
+/* volunteers teaser (home) */
+.dark{background:var(--violet);color:#fff;border-block:var(--line);position:relative;overflow:hidden}
+.dark .lead{color:#E7E1FF}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:20px;margin:clamp(32px,5vw,56px) 0}
+.stat{padding:24px;background:var(--white);color:var(--ink)}
+.stat b{display:block;font:800 clamp(56px,6.4vw,92px)/.9 var(--display);letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.stat span{display:block;margin-top:8px;font-weight:700;color:var(--muted)}
+
+/* booking */
+.book{background:var(--coral);border-block:var(--line)}
+.book-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(32px,5vw,72px);align-items:start}
+.book .lead{color:var(--ink)}
+.facts{display:flex;flex-direction:column;gap:14px;margin-top:28px}
+.facts li{display:flex;gap:12px;align-items:center;font-weight:700}
+.facts .icon{width:26px;height:26px}
+form.booking{display:flex;flex-direction:column;gap:22px;padding:clamp(22px,3.4vw,36px);background:var(--white)}
+.booking fieldset{border:0;margin:0;padding:0;min-width:0}
+.booking legend{font:800 18px/1.2 var(--display);margin-bottom:12px;padding:0}
+.opts{display:flex;flex-wrap:wrap;gap:10px}
+.opt{position:relative;display:inline-flex}
+.opt input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+.opt span{display:inline-flex;align-items:center;gap:8px;min-height:46px;padding:0 18px;border:2px solid var(--ink);border-radius:999px;background:var(--white);font-weight:700;font-size:15px;transition:background-color .15s ease,transform .15s ease}
+.opt:hover span{background:var(--paper)}
+.opt input:checked+span{background:var(--violet);color:#fff;transform:translate(-1px,-1px);box-shadow:3px 3px 0 var(--ink)}
+.opt input:focus-visible+span{outline:3px solid var(--coral);outline-offset:3px}
+.opt input:disabled{cursor:not-allowed}
+.opt input:disabled+span{opacity:.4;text-decoration:line-through;background:var(--paper)}
+.days .opt span{flex-direction:column;gap:0;min-height:76px;min-width:72px;padding:8px 12px;border-radius:20px;justify-content:center;text-align:center;line-height:1.1}
+.days b{font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+.days i{font:800 28px/1.1 var(--display);font-style:normal}
+.days small{font-size:12px;font-weight:700}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fields label{display:flex;flex-direction:column;gap:6px;font-weight:800;font-size:15px}
+.fields input,.join input,.join select,.join textarea{width:100%;min-height:52px;padding:12px 16px;border:2.5px solid var(--ink);border-radius:16px;background:var(--white);color:var(--ink);font:600 16px var(--body)}
+.summary{padding:14px 18px;border:2px dashed var(--ink);border-radius:16px;background:var(--paper);font-weight:700}
+.status{min-height:1.6em;font-weight:800}
+
+/* faq */
+.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(32px,6vw,88px)}
+details{border:var(--line);border-radius:22px;background:var(--white);margin-bottom:14px;transition:box-shadow .2s ease}
+details[open]{box-shadow:var(--sh)}
+summary{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:68px;padding:12px 22px;font:800 clamp(19px,1.9vw,23px)/1.2 var(--display);letter-spacing:-.01em;cursor:pointer;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary .icon{transition:transform .25s ease;color:var(--violet)}
+details[open] summary .icon{transform:rotate(45deg)}
+details p{padding:0 22px 22px;color:var(--muted);max-width:60ch}
+
+/* footer */
+.ft{background:var(--ink);color:#fff;padding:72px 0 44px;border-top:var(--line)}
+.fgrid{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:36px;margin-bottom:48px}
+.fgrid h4{font:800 15px/1 var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--sun);margin-bottom:14px}
+.fgrid p,.fgrid a{color:#D9D5F5}
+.fgrid a{display:flex;align-items:center;min-height:44px;text-decoration:none}
+.fgrid a:hover{color:#fff;text-decoration:underline}
+.word{font:800 clamp(52px,11vw,170px)/.9 var(--display);letter-spacing:-.05em;color:transparent;-webkit-text-stroke:2px #fff;margin-bottom:28px;overflow-wrap:anywhere}
+.copy{font-size:14px;color:#BDB8E0}
+
+/* mobile dock */
+.dock{display:none}
+
+/* ========== VOLUNTEER PAGE (storybook) ========== */
+.story h1,.story h2,.story h3{font-family:var(--story);letter-spacing:-.01em}
+.night{background:var(--night);color:#fff;position:relative;overflow:hidden;border-bottom:var(--line)}
+.night .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,64px);align-items:center;padding-block:clamp(40px,6vw,84px)}
+.night .tag{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border:2px solid #fff;border-radius:999px;font-weight:800;font-size:14px;margin-bottom:22px}
+.night h1{font:700 clamp(46px,6.4vw,92px)/1 var(--story);letter-spacing:-.01em;margin-bottom:22px}
+.night h1 span{color:var(--sun);text-decoration:underline wavy var(--coral) 4px;text-underline-offset:.14em}
+.night .lead{color:#DCD8FF}
+.scene{width:100%;height:auto;display:block;border:var(--line);border-radius:36px;box-shadow:8px 8px 0 var(--coral);background:var(--night)}
+.scene .tw{transform-box:fill-box;transform-origin:center;animation:twinkle 3.4s ease-in-out infinite}
+.scene .fl{animation:floaty 6s ease-in-out infinite}
+.note{font:700 clamp(26px,2.6vw,34px)/1.1 var(--hand);color:var(--violet)}
+.chapters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px}
+.chap{position:relative;padding:34px 28px 30px;background:var(--white)}
+.chap:nth-child(1){transform:rotate(-1deg)}
+.chap:nth-child(3){transform:rotate(1deg)}
+.chap .ic{position:absolute;right:20px;top:-26px;width:60px;height:60px;border:var(--line);border-radius:50%;display:grid;place-items:center;box-shadow:3px 3px 0 var(--ink)}
+.chap h3{font:700 32px/1.05 var(--story);margin:6px 0 12px}
+.chap p{color:var(--muted);font-size:16px}
+.band-coral{background:var(--coral);border-block:var(--line)}
+.band-coral .stat{background:var(--white)}
+.band-coral .stats{margin-bottom:0}
+.story .stat b{font-family:var(--story);font-weight:700}
+.trail{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;padding-bottom:40px}
+.trail::before{content:"";position:absolute;left:6%;right:6%;top:30px;border-top:3px dashed var(--ink);opacity:.4}
+.trail li{position:relative;padding:34px 22px 24px;background:var(--white)}
+.trail li:nth-child(even){transform:translateY(36px)}
+.trail .no{position:absolute;top:-28px;left:20px;width:56px;height:56px;border:var(--line);border-radius:50%;display:grid;place-items:center;font:700 28px/1 var(--story);box-shadow:3px 3px 0 var(--ink)}
+.trail h3{font:700 26px/1.05 var(--story);margin:8px 0 8px}
+.trail p{color:var(--muted);font-size:15.5px}
+.tickets{display:flex;flex-direction:column;gap:20px}
+.ticket{display:grid;grid-template-columns:auto 1fr auto;align-items:center;background:var(--white);border:var(--line);border-radius:22px;box-shadow:var(--sh);overflow:hidden}
+.tk-date{align-self:stretch;display:flex;flex-direction:column;justify-content:center;padding:18px 26px;text-align:center;border-right:2.5px dashed var(--ink);line-height:1}
+.tk-date b{font:700 48px/1 var(--story)}
+.tk-date span{margin-top:4px;font-size:13px;font-weight:800;letter-spacing:.14em}
+.tk-body{padding:18px 26px}
+.tk-body h3{font:700 24px/1.15 var(--story);margin-bottom:4px}
+.tk-body p{color:var(--muted);font-size:15px}
+.tk-go{padding:18px 26px}
+.polas{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:30px}
+.pola{position:relative;padding:12px 12px 16px;background:var(--white);border:var(--line);box-shadow:var(--sh);transform:rotate(var(--rot,-2deg));transition:transform .25s ease}
+.pola:hover{transform:rotate(0deg) scale(1.03)}
+.pola::before{content:"";position:absolute;top:-16px;left:50%;width:84px;height:28px;margin-left:-42px;background:var(--sun);border:2px solid var(--ink);transform:rotate(-3deg)}
+.pola .ph{aspect-ratio:1;display:grid;place-items:center;border:2px solid var(--ink)}
+.pola .ph .icon{width:56px;height:56px;stroke-width:1.6}
+.pola p{font:700 26px/1.1 var(--hand);margin-top:12px;text-align:center}
+.involve{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,80px);align-items:start}
+.ways{display:flex;flex-direction:column;gap:16px;margin-top:24px}
+.ways li{padding:22px 24px;background:var(--white)}
+.ways h3{font:700 28px/1.05 var(--story);margin-bottom:6px}
+.ways p{color:var(--muted);font-size:16px}
+.pay{margin-top:22px;padding:18px 22px;border:2px dashed var(--ink);border-radius:18px;background:var(--sun);font-weight:700;font-size:15px}
+.pay b{display:block;margin-bottom:4px}
+form.join{display:flex;flex-direction:column;gap:16px;padding:clamp(24px,3.6vw,40px);background:var(--mint)}
+form.join h3{font:700 clamp(32px,3.4vw,44px)/1.05 var(--story)}
+form.join label{display:flex;flex-direction:column;gap:6px;font-weight:800;font-size:15px}
+form.join textarea{min-height:96px;resize:vertical}
+.closing{background:var(--night);color:#fff;text-align:center;border-top:var(--line)}
+.closing .wrap{display:flex;flex-direction:column;align-items:center;gap:22px;padding-block:clamp(56px,8vw,96px)}
+.closing h2{font:700 clamp(38px,5vw,68px)/1.02 var(--story);max-width:16ch}
+.closing h2 span{color:var(--sun)}
+
+/* motion */
+@keyframes pop{0%{opacity:0;transform:translateY(24px) scale(.94)}70%{opacity:1;transform:translateY(-4px) scale(1.01)}100%{opacity:1;transform:none}}
+@keyframes slide{to{transform:translateX(-50%)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes twinkle{0%,100%{opacity:.35;transform:scale(.75) rotate(0)}50%{opacity:1;transform:scale(1.12) rotate(14deg)}}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.pop{animation:pop .8s cubic-bezier(.2,.8,.2,1) both}
+.p1{animation-delay:.05s}.p2{animation-delay:.18s}.p3{animation-delay:.3s}.p4{animation-delay:.42s}
+.twinkle{animation:twinkle 3.4s ease-in-out infinite}
+.float{animation:floaty 6s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* responsive */
+@media (max-width:1040px){
+  .bento{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .t-big{grid-column:1/-1;grid-row:auto}
+  .trail{grid-template-columns:repeat(2,minmax(0,1fr));padding-bottom:0}
+  .trail li:nth-child(even){transform:none}
+  .trail::before{display:none}
+}
+@media (max-width:960px){
+  .menu-btn{display:inline-flex}
+  .nav{position:absolute;left:0;right:0;top:100%;flex-direction:column;align-items:flex-start;gap:0;padding:10px 24px 24px;background:var(--paper);border-bottom:var(--line);display:none}
+  .nav.open{display:flex}
+  .nav .btn{margin-top:12px}
+  .hero .wrap,.about,.book-grid,.faq-grid,.involve,.night .wrap{grid-template-columns:1fr}
+  .steps3,.chapters{grid-template-columns:1fr;gap:34px}
+  .chap:nth-child(n){transform:none}
+  .fgrid{grid-template-columns:1fr 1fr}
+  .spin{left:-8px;top:-24px;width:96px;height:96px}
+}
+@media (max-width:700px){
+  body{padding-bottom:84px}
+  .dock{display:flex;gap:12px;position:fixed;left:0;right:0;bottom:0;z-index:60;padding:12px 16px 16px;background:var(--paper);border-top:var(--line)}
+  .dock .btn{flex:1;padding:0 12px}
+  .bento{grid-template-columns:1fr}
+  .bh-photo{grid-column:1/-1;grid-row:auto;min-height:300px}
+  .bh-photo .mono{margin-top:16px}
+  .t-wide{flex-direction:column;align-items:flex-start}
+  .fields{grid-template-columns:1fr}
+  .fgrid{grid-template-columns:1fr}
+  .trail{grid-template-columns:1fr;gap:38px}
+  .ticket{grid-template-columns:auto 1fr}
+  .tk-go{grid-column:1/-1;padding-top:0}
+  .cta .btn{width:100%}
+}
+
+.err{display:block;min-height:1.2em;margin-top:4px;font-size:13px;font-weight:800;color:#C2123F}
+input[aria-invalid="true"]{border-color:#C2123F;box-shadow:3px 3px 0 #C2123F}
+.status .btn{margin-top:10px}
+
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 0C12.8 7 17 11.2 24 12C17 12.8 12.8 17 12 24C11.2 17 7 12.8 0 12C7 11.2 11.2 7 12 0Z"/></symbol>
+    <symbol id="i-tooth" viewBox="0 0 24 24"><path d="M6.5 2.5c-2.2 0-4 1.8-4 4.6 0 1.8.7 3.2 1.2 5 .5 2.2.6 8.4 2.6 8.4 1.6 0 1.4-4.5 3-4.5h1.4c1.6 0 1.4 4.5 3 4.5 2 0 2.1-6.2 2.6-8.4.5-1.8 1.2-3.2 1.2-5 0-2.8-1.8-4.6-4-4.6-1.4 0-2.3.8-3.5.8s-2.1-.8-3.5-.8z"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 8h16M4 16h16"/></symbol>
+    <symbol id="i-smile" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 14c1 1.8 2.4 2.6 4 2.6s3-.8 4-2.6M9 9.5v.5M15 9.5v.5"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v5.5c0 4.6-3 8-7 9.5-4-1.5-7-4.9-7-9.5V6z"/><path d="M9 12l2.2 2.2L15.5 10"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6 3h3l1.5 4-2 1.3a11 11 0 0 0 5.2 5.2L15 11.5l4 1.5v3a2 2 0 0 1-2 2A13 13 0 0 1 4 5a2 2 0 0 1 2-2z"/></symbol>
+    <symbol id="i-braces" viewBox="0 0 24 24"><rect x="3" y="9" width="18" height="6" rx="3"/><path d="M8 9v6M12 9v6M16 9v6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+      <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.4a4.3 4.3 0 0 1 7.5 2.4C19.5 15.4 12 20 12 20z"/></symbol>
+      <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5.5c3-1 5.5-1 8 .5v13c-2.5-1.5-5-1.5-8-.5zM20 5.5c-3-1-5.5-1-8 .5v13c2.5-1.5 5-1.5 8-.5z"/></symbol>
+      <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8.5" r="3.2"/><path d="M3 19c.5-3.4 3-5 6-5s5.5 1.6 6 5M16 5.6a3.2 3.2 0 0 1 0 5.8M17.5 14.3c2 .5 3.2 2 3.5 4.7"/></symbol>
+  </defs>
+</svg>
+
+<div class="demo">Demo content: names, numbers, dates and photos are samples for checking the design.</div>
+
+<header class="hd">
+  <div class="wrap">
+    <a class="brand" href="#home" aria-label="Dr. Victoria Molina, home">
+      <span class="mark"><svg class="icon" aria-hidden="true"><use href="#i-tooth"/></svg></span>
+      <span class="brand-name"><b>Dr. Victoria Molina</b><span>Dentist · Founder, Tooth Fairy Volunteers</span></span>
+    </a>
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav"><svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg></button>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#volunteers">Tooth Fairy Volunteers</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+      <a class="btn btn-violet btn-sm" href="#book">Book a visit</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<div class="view" id="home">
+
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow pop p1">Dentist in [Your City]</span>
+      <h1 class="mega pop p2">Bold smiles. <mark>Gentle</mark> dentistry.</h1>
+      <p class="lead pop p3">Dr. Victoria Molina treats patients at her clinic and leads Tooth Fairy Volunteers, a team that brings dental check-ups to children who need them.</p>
+      <div class="cta pop p3">
+        <a class="btn btn-violet" href="#book">Book a visit <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn" href="#volunteers">Meet Tooth Fairy Volunteers</a>
+      </div>
+      <ul class="chips pop p4" aria-label="Credentials">
+        <li class="chip"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>BDS · UFCD graduate</li>
+        <li class="chip"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg>PMDC No. 00000-D (demo)</li>
+      </ul>
+    </div>
+
+    <div class="bento-hero">
+      <div class="spin" aria-hidden="true">
+        <svg viewBox="0 0 120 120" width="100%" height="100%"><defs><path id="circ" d="M60 60 m-44 0 a44 44 0 1 1 88 0 a44 44 0 1 1 -88 0"/></defs><text style="font-size:10px"><textPath href="#circ">OPEN MON–SAT · BOOK ONLINE ·</textPath></text></svg>
+        <span class="core"><svg class="icon spark" style="width:22px;height:22px;color:#15122E"><use href="#i-spark"/></svg></span>
+      </div>
+      <div class="bh bh-photo stk pop p2">
+        <small>Photo goes here</small>
+        <span class="mono" aria-hidden="true">VM</span>
+        <small>Dr. Victoria Molina</small>
+      </div>
+      <div class="bh bh-tooth stk pop p3">
+        <svg viewBox="0 0 200 200" aria-hidden="true">
+          <path d="M6.5 2.5c-2.2 0-4 1.8-4 4.6 0 1.8.7 3.2 1.2 5 .5 2.2.6 8.4 2.6 8.4 1.6 0 1.4-4.5 3-4.5h1.4c1.6 0 1.4 4.5 3 4.5 2 0 2.1-6.2 2.6-8.4.5-1.8 1.2-3.2 1.2-5 0-2.8-1.8-4.6-4-4.6-1.4 0-2.3.8-3.5.8s-2.1-.8-3.5-.8z" transform="translate(-4 -2) scale(9)" fill="#fff" stroke="#15122E" stroke-width=".3" stroke-linejoin="round"/>
+          <circle cx="78" cy="92" r="7" fill="#15122E"/><circle cx="122" cy="92" r="7" fill="#15122E"/>
+          <circle cx="62" cy="114" r="9" fill="#FF6B8E"/><circle cx="138" cy="114" r="9" fill="#FF6B8E"/>
+          <path d="M82 116q18 22 36 0" fill="none" stroke="#15122E" stroke-width="5" stroke-linecap="round"/>
+          <g class="twinkle" style="transform-box:fill-box;transform-origin:center"><use href="#i-spark" x="146" y="14" width="34" height="34" fill="#5B2EFF"/></g>
+        </svg>
+      </div>
+      <div class="bh bh-next stk pop p4">
+        <small>Next free time</small>
+        <b id="nextSlot">Book online</b>
+        <a class="btn btn-ink btn-sm" href="#book">Grab it</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee" aria-label="Services at a glance">
+  <div class="track">
+    <ul><li>Check-ups</li><li>Kids' dentistry</li><li>Fillings</li><li>Whitening</li><li>Braces</li><li>Emergency care</li></ul>
+    <ul aria-hidden="true"><li>Check-ups</li><li>Kids' dentistry</li><li>Fillings</li><li>Whitening</li><li>Braces</li><li>Emergency care</li></ul>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Services</span>
+      <h2 class="h2">Everything your smile needs.</h2>
+      <p class="lead">Tap a service and we will pre-fill your booking.</p>
+    </div>
+    <div class="bento">
+      <article class="tile t-big stk">
+        <div>
+          <span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-tooth"/></svg></span>
+          <h3>Check-up and cleaning</h3>
+          <p>The best place to start. A full exam, a proper clean and a plan you understand.</p>
+          <ul>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Full mouth exam and X-rays if needed</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Scale and polish</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Simple home-care advice</li>
+          </ul>
+        </div>
+        <div class="row"><span class="dur">40 min</span><a class="go" href="#book" data-service="checkup">Book this <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+      </article>
+      <article class="tile t-kids stk">
+        <div><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-smile"/></svg></span><h3>Children's dentistry</h3><p>Easy first visits for ages 2 to 12.</p></div>
+        <div class="row"><span class="dur">30 min</span><a class="go" href="#book" data-service="kids">Book <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+      </article>
+      <article class="tile t-fill stk">
+        <div><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg></span><h3>Fillings and root canal</h3><p>Gentle repair, with numbing first.</p></div>
+        <div class="row"><span class="dur">60 min</span><a class="go" href="#book" data-service="fillings">Book <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+      </article>
+      <article class="tile t-brace stk">
+        <div><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-braces"/></svg></span><h3>Braces and aligners</h3><p>A clear plan, timeline and cost.</p></div>
+        <div class="row"><span class="dur">30 min</span><a class="go" href="#book" data-service="braces">Book <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+      </article>
+      <article class="tile t-white stk">
+        <div><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-spark"/></svg></span><h3>Teeth whitening</h3><p>Safe in-clinic whitening.</p></div>
+        <div class="row"><span class="dur">60 min</span><a class="go" href="#book" data-service="whitening">Book <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+      </article>
+      <article class="tile t-wide stk">
+        <div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">
+          <span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg></span>
+          <div><h3>Toothache or a broken tooth?</h3><p>Same-day slot where possible. Call or message us first.</p></div>
+        </div>
+        <a class="btn btn-sun" href="#book" data-service="emergency">Book emergency care</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT TO EXPECT -->
+<section class="section expect">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow" style="background:var(--white)">Nervous? Good to know</span>
+      <h2 class="h2">Here's exactly what happens.</h2>
+    </div>
+    <ol class="steps3">
+      <li class="stk"><h3>Say hello</h3><p>We talk first. You tell us what worries you, and we listen.</p></li>
+      <li class="stk"><h3>Look and listen</h3><p>A gentle exam, with every step explained before we do it.</p></li>
+      <li class="stk"><h3>Plan together</h3><p>You get a clear plan and price before any treatment begins.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="wrap about">
+    <div class="photo stk">
+      <small>Photo goes here</small>
+      <span class="mono" aria-hidden="true">VM</span>
+      <small>Dr. Victoria Molina</small>
+      <span class="sticker-note">Founder</span>
+    </div>
+    <div>
+      <span class="eyebrow">Meet your dentist</span>
+      <h2 class="h2" style="margin:20px 0 24px">Dr. Victoria <mark>Molina</mark>.</h2>
+      <p class="lead">Dr. Molina graduated in dentistry from UFCD and treats adults and children at her clinic.</p>
+      <p class="lead">She is also the founder of Tooth Fairy Volunteers, which takes check-ups and brushing lessons into schools.</p>
+      <dl class="dl">
+        <dt>Degree</dt><dd>BDS, UFCD</dd>
+        <dt>Registration</dt><dd>PMDC No. 00000-D (demo)</dd>
+        <dt>Practice</dt><dd>General and children's dentistry</dd>
+        <dt>Founder</dt><dd>Tooth Fairy Volunteers</dd>
+      </dl>
+      <a class="btn btn-violet" href="#book">Book with Dr. Molina</a>
+    </div>
+  </div>
+</section>
+
+<!-- VOLUNTEERS TEASER -->
+<section class="section dark" id="teaser">
+  <svg class="icon spark twinkle" style="position:absolute;left:5%;top:56px;width:40px;height:40px;color:var(--sun)" aria-hidden="true"><use href="#i-spark"/></svg>
+  <svg class="icon spark twinkle" style="position:absolute;right:8%;top:100px;width:24px;height:24px;color:var(--mint);animation-delay:1.2s" aria-hidden="true"><use href="#i-spark"/></svg>
+  <div class="wrap">
+    <span class="eyebrow">Tooth Fairy Volunteers</span>
+    <h2 class="h2" style="margin:20px 0 20px;max-width:14ch">Her other mission.</h2>
+    <p class="lead">Dentists, students and neighbours visit schools to check teeth, teach brushing and refer children who need care.</p>
+    <div class="stats">
+      <div class="stat stk"><b data-count="4200">4,200</b><span>children screened</span></div>
+      <div class="stat stk"><b data-count="180">180</b><span>active volunteers</span></div>
+      <div class="stat stk"><b data-count="62">62</b><span>school visits</span></div>
+    </div>
+    <div class="cta" style="margin-bottom:0">
+      <a class="btn btn-sun" href="#volunteers">See the story <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="btn" href="#involve">Volunteer or donate</a>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section class="section book" id="book">
+  <div class="wrap book-grid">
+    <div>
+      <span class="eyebrow" style="background:var(--white)">Book online</span>
+      <h2 class="h2" style="margin:20px 0 20px">Book your visit in a minute.</h2>
+      <p class="lead">Pick what you need, choose a time, and we confirm on WhatsApp within the day.</p>
+      <ul class="facts">
+        <li><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>Mon to Sat, 10:00 to 19:00</li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>Demo Plaza, Main Boulevard, Your City</li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>WhatsApp +92 300 0000000</li>
+      </ul>
+    </div>
+    <form class="booking stk" id="bookForm" novalidate>
+      <fieldset>
+        <legend>1. What do you need?</legend>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="svc" value="checkup" data-label="Check-up and cleaning" checked><span>Check-up</span></label>
+          <label class="opt"><input type="radio" name="svc" value="kids" data-label="Children's dentistry"><span>Kids</span></label>
+          <label class="opt"><input type="radio" name="svc" value="fillings" data-label="Fillings and root canal"><span>Filling</span></label>
+          <label class="opt"><input type="radio" name="svc" value="braces" data-label="Braces and aligners"><span>Braces</span></label>
+          <label class="opt"><input type="radio" name="svc" value="whitening" data-label="Teeth whitening"><span>Whitening</span></label>
+          <label class="opt"><input type="radio" name="svc" value="emergency" data-label="Emergency care"><span>Emergency</span></label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>2. Pick a day</legend>
+        <div class="opts days" id="days"><noscript>Please message us on WhatsApp to book.</noscript></div>
+      </fieldset>
+      <fieldset>
+        <legend>3. Pick a time</legend>
+        <div class="opts" id="slots"></div>
+      </fieldset>
+      <div class="fields">
+        <label for="bName">Your name<input id="bName" type="text" autocomplete="name" maxlength="40" autocapitalize="words" aria-describedby="bNameErr"><span class="err" id="bNameErr" aria-live="polite"></span></label>
+        <label for="bPhone">WhatsApp number<input id="bPhone" type="tel" inputmode="tel" autocomplete="tel" maxlength="22" placeholder="0300 1234567" aria-describedby="bPhoneErr"><span class="err" id="bPhoneErr" aria-live="polite"></span></label>
+      </div>
+      <p class="summary" id="summary">Choose a service, day and time.</p>
+      <button class="btn btn-violet" type="submit" style="align-self:flex-start">Request this time</button>
+      <p class="status" id="bookStatus" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="wrap faq-grid">
+    <div class="head" style="margin:0">
+      <span class="eyebrow">Questions</span>
+      <h2 class="h2">Good to know.</h2>
+      <p class="lead">Can't find your answer? Message us on WhatsApp.</p>
+    </div>
+    <div>
+      <details open><summary>How do I book an appointment?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Use the booking form above or send a WhatsApp message with your preferred day. We confirm your time within the day.</p></details>
+      <details><summary>Do you treat children?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Yes. Children's visits are shorter and gentler, and a parent can stay with the child throughout.</p></details>
+      <details><summary>What if I'm nervous about the dentist?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Tell us when you book. We explain each step before we start and pause whenever you need a break.</p></details>
+      <details><summary>How much will treatment cost?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary><p>You receive a written estimate before any treatment starts. Sample text for this demo.</p></details>
+      <details><summary>Can I volunteer with Tooth Fairy Volunteers?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Yes, dentists, students and helpers are all welcome. <a href="#involve" style="font-weight:800;color:var(--violet)">See how to join</a>.</p></details>
+    </div>
+  </div>
+</section>
+
+
+<div class="dock">
+  <a class="btn btn-violet" href="#book">Book a visit</a>
+  <a class="btn" href="https://wa.me/923000000000?text=Hello%20Dr.%20Molina" target="_blank" rel="noopener">WhatsApp</a>
+</div>
+</div>
+<div class="view" id="volunteers" hidden>
+
+
+<!-- NIGHT HERO -->
+<section class="night">
+  <div class="wrap">
+    <div>
+      <p class="tag"><svg class="icon spark" style="width:16px;height:16px;color:var(--sun)" aria-hidden="true"><use href="#i-spark"/></svg>Tooth Fairy Volunteers</p>
+      <h1 class="pop p1">Every child deserves a <span>healthy smile</span>.</h1>
+      <p class="lead pop p2">Founded by Dr. Victoria Molina, Tooth Fairy Volunteers takes dental check-ups and brushing lessons to children at their schools.</p>
+      <div class="cta pop p3">
+        <a class="btn btn-sun" href="#involve">Volunteer with us <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn" href="#involve">Donate</a>
+      </div>
+    </div>
+    <div class="pop p2">
+      <svg class="scene" viewBox="0 0 760 520" role="img" aria-label="Illustration of a tooth fairy flying over a hill toward a school under a crescent moon">
+        <rect width="760" height="520" fill="#1B1A4A"/>
+        <circle cx="120" cy="110" r="46" fill="#FFE9A3"/>
+        <circle cx="104" cy="96" r="9" fill="#F5D77E"/><circle cx="138" cy="126" r="6" fill="#F5D77E"/><circle cx="134" cy="92" r="4" fill="#F5D77E"/>
+        <g class="tw"><use href="#i-spark" x="260" y="60" width="26" height="26" fill="#FFD23F"/></g>
+        <g class="tw" style="animation-delay:1s"><use href="#i-spark" x="420" y="110" width="16" height="16" fill="#FFFFFF"/></g>
+        <g class="tw" style="animation-delay:2s"><use href="#i-spark" x="680" y="70" width="22" height="22" fill="#FFD23F"/></g>
+        <g class="tw" style="animation-delay:.5s"><use href="#i-spark" x="330" y="190" width="12" height="12" fill="#FFFFFF"/></g>
+        <g class="tw" style="animation-delay:1.5s"><use href="#i-spark" x="60" y="230" width="14" height="14" fill="#6EE7C2"/></g>
+        <path d="M0 400 C150 340 300 380 450 360 C600 340 700 380 760 370 V520 H0Z" fill="#2B2866"/>
+        <!-- school -->
+        <rect x="80" y="295" width="170" height="92" fill="#FF6B8E" stroke="#15122E" stroke-width="3"/>
+        <path d="M68 295 L165 238 L262 295Z" fill="#FFD23F" stroke="#15122E" stroke-width="3" stroke-linejoin="round"/>
+        <rect x="150" y="338" width="30" height="49" fill="#15122E"/>
+        <rect x="98" y="312" width="28" height="28" fill="#FFF1B8" stroke="#15122E" stroke-width="3"/>
+        <rect x="204" y="312" width="28" height="28" fill="#FFF1B8" stroke="#15122E" stroke-width="3"/>
+        <line x1="165" y1="238" x2="165" y2="206" stroke="#FFFFFF" stroke-width="3"/>
+        <path d="M165 206 l30 9 l-30 9z" fill="#6EE7C2"/>
+        <path d="M0 450 C200 410 400 470 600 440 C680 428 730 440 760 436 V520 H0Z" fill="#38347F"/>
+        <path d="M548 262 C470 318 360 292 266 352" fill="none" stroke="#FFF1B8" stroke-width="3" stroke-dasharray="2 11" stroke-linecap="round"/>
+        <!-- fairy -->
+        <g transform="translate(560 150)">
+          <g class="fl">
+            <ellipse cx="-34" cy="22" rx="30" ry="15" fill="#FFFFFF" opacity=".6" transform="rotate(-25 -34 22)"/>
+            <ellipse cx="34" cy="22" rx="30" ry="15" fill="#FFFFFF" opacity=".6" transform="rotate(25 34 22)"/>
+            <path d="M-8 96v16M8 96v16" stroke="#FFC9A8" stroke-width="6" stroke-linecap="round"/>
+            <path d="M-18 44 L0 24 L18 44 L26 96 L-26 96Z" fill="#6EE7C2" stroke="#15122E" stroke-width="3" stroke-linejoin="round"/>
+            <circle cx="0" cy="10" r="15" fill="#FFC9A8" stroke="#15122E" stroke-width="3"/>
+            <path d="M-16 8 C-15 -9 15 -9 16 8 C8 2 -8 2 -16 8Z" fill="#15122E"/>
+            <circle cx="0" cy="-13" r="7" fill="#15122E"/>
+            <line x1="22" y1="52" x2="54" y2="22" stroke="#FFD23F" stroke-width="4" stroke-linecap="round"/>
+            <use href="#i-spark" x="44" y="2" width="24" height="24" fill="#FFD23F"/>
+          </g>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTERS -->
+<section class="section" id="story">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Our story</span>
+      <h2 class="h2" style="font-family:var(--story);font-weight:700;letter-spacing:-.01em">Three chapters, one big smile.</h2>
+      <p class="note">sample story, to be replaced with the real one</p>
+    </div>
+    <div class="chapters">
+      <article class="chap stk">
+        <span class="ic" style="background:var(--sun)"><svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg></span>
+        <p class="note">Chapter 1</p>
+        <h3>The idea</h3>
+        <p>Many children never see a dentist. Tooth Fairy Volunteers brings the check-up to them, at school, at no cost to families.</p>
+      </article>
+      <article class="chap stk">
+        <span class="ic" style="background:var(--mint)"><svg class="icon" aria-hidden="true"><use href="#i-users"/></svg></span>
+        <p class="note">Chapter 2</p>
+        <h3>A day at camp</h3>
+        <p>A team of dentists and students checks every child, teaches brushing and sends a note home to parents.</p>
+      </article>
+      <article class="chap stk">
+        <span class="ic" style="background:var(--coral)"><svg class="icon" aria-hidden="true"><use href="#i-spark"/></svg></span>
+        <p class="note">Chapter 3</p>
+        <h3>Your turn</h3>
+        <p>Give a Saturday, bring us to your school, or help fund brushing kits and follow-up treatment.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="section band-coral">
+  <div class="wrap">
+    <div class="head" style="margin-bottom:0">
+      <span class="eyebrow" style="background:var(--white)">So far</span>
+      <h2 class="h2" style="font-family:var(--story);font-weight:700;letter-spacing:-.01em">Little smiles add up.</h2>
+    </div>
+    <div class="stats">
+      <div class="stat stk"><b data-count="4200">4,200</b><span>children screened</span></div>
+      <div class="stat stk"><b data-count="180">180</b><span>active volunteers</span></div>
+      <div class="stat stk"><b data-count="62">62</b><span>school visits</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRAIL -->
+<section class="section">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">How a camp works</span>
+      <h2 class="h2" style="font-family:var(--story);font-weight:700;letter-spacing:-.01em">One school day, four stops.</h2>
+    </div>
+    <ol class="trail">
+      <li class="stk"><span class="no" style="background:var(--sun)">1</span><h3>Set up</h3><p>The team arrives early with kits, charts and a screening corner.</p></li>
+      <li class="stk"><span class="no" style="background:var(--mint)">2</span><h3>Check every child</h3><p>A quick, gentle look with a mirror and a light.</p></li>
+      <li class="stk"><span class="no" style="background:var(--coral)">3</span><h3>Brush and learn</h3><p>Small groups practise brushing on models, then on their own teeth.</p></li>
+      <li class="stk"><span class="no" style="background:var(--sky)">4</span><h3>Send a note home</h3><p>Parents get a note, and children who need care are booked in.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- TICKETS -->
+<section class="section" style="padding-top:0" id="events">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Upcoming camps</span>
+      <h2 class="h2" style="font-family:var(--story);font-weight:700;letter-spacing:-.01em">Save a seat.</h2>
+    </div>
+    <ul class="tickets">
+      <li class="ticket"><div class="tk-date" style="background:var(--sun)"><b>12</b><span>DEC</span></div><div class="tk-body"><h3>Brush and Learn at Demo Public School</h3><p>Saturday, 09:00 to 14:00 · 14 volunteer seats left</p></div><div class="tk-go"><a class="btn btn-violet btn-sm" href="#involve">Join this camp</a></div></li>
+      <li class="ticket"><div class="tk-date" style="background:var(--mint)"><b>09</b><span>JAN</span></div><div class="tk-body"><h3>Screening camp, Demo Community Centre</h3><p>Saturday, 10:00 to 15:00 · 22 volunteer seats left</p></div><div class="tk-go"><a class="btn btn-violet btn-sm" href="#involve">Join this camp</a></div></li>
+      <li class="ticket"><div class="tk-date" style="background:var(--coral)"><b>06</b><span>FEB</span></div><div class="tk-body"><h3>School visit, Demo Girls High School</h3><p>Saturday, 09:00 to 13:00 · 30 volunteer seats left</p></div><div class="tk-go"><a class="btn btn-violet btn-sm" href="#involve">Join this camp</a></div></li>
+    </ul>
+  </div>
+</section>
+
+<!-- SCRAPBOOK -->
+<section class="section band-coral" style="background:var(--mint)">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow" style="background:var(--white)">Scrapbook</span>
+      <h2 class="h2" style="font-family:var(--story);font-weight:700;letter-spacing:-.01em">Moments from camp.</h2>
+    </div>
+    <div class="polas">
+      <figure class="pola" style="--rot:-3deg;margin:0"><div class="ph" style="background:var(--coral)"><svg class="icon" aria-hidden="true"><use href="#i-smile"/></svg></div><p>Brushing practice</p></figure>
+      <figure class="pola" style="--rot:2deg;margin:0"><div class="ph" style="background:var(--sun)"><svg class="icon" aria-hidden="true"><use href="#i-users"/></svg></div><p>Our team</p></figure>
+      <figure class="pola" style="--rot:-1.5deg;margin:0"><div class="ph" style="background:var(--sky)"><svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg></div><p>Take-home kits</p></figure>
+      <figure class="pola" style="--rot:3deg;margin:0"><div class="ph" style="background:var(--white)"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg></div><p>Thank-you notes</p></figure>
+    </div>
+  </div>
+</section>
+
+<!-- GET INVOLVED -->
+<section class="section" id="involve">
+  <div class="wrap involve">
+    <div>
+      <span class="eyebrow">Get involved</span>
+      <h2 class="h2" style="margin-top:20px;font-family:var(--story);font-weight:700;letter-spacing:-.01em">Three ways to help.</h2>
+      <ul class="ways">
+        <li class="stk"><h3>Volunteer</h3><p>Dentists, students and helpers. Give one Saturday a month, or just one camp.</p></li>
+        <li class="stk"><h3>Partner</h3><p>Schools, NGOs and companies. We bring the team, you bring the children.</p></li>
+        <li class="stk"><h3>Donate</h3><p>Fund brushing kits, screenings and follow-up treatment.</p></li>
+      </ul>
+      <div class="pay"><b>Donation details (demo)</b>Bank: Demo Bank · Title: Tooth Fairy Volunteers · Account: 0000-0000000-0</div>
+    </div>
+    <form class="join stk" id="joinForm" novalidate>
+      <h3>Ready to join?</h3>
+      <p>Tell us a little about you and we will message you on WhatsApp.</p>
+      <label for="fName">Your name<input id="fName" type="text" autocomplete="name" maxlength="40" autocapitalize="words" aria-describedby="fNameErr"><span class="err" id="fNameErr" aria-live="polite"></span></label>
+      <label for="fPhone">WhatsApp number<input id="fPhone" type="tel" inputmode="tel" autocomplete="tel" maxlength="22" placeholder="0300 1234567" aria-describedby="fPhoneErr"><span class="err" id="fPhoneErr" aria-live="polite"></span></label>
+      <label for="fRole">I am a<select id="fRole"><option>Dentist</option><option>Dental student</option><option>Hygienist or assistant</option><option>Teacher or school</option><option>Other helper</option></select></label>
+      <label for="fMsg">Message (optional)<textarea id="fMsg" maxlength="300"></textarea></label>
+      <button class="btn btn-ink" type="submit" style="align-self:flex-start">Send my details</button>
+      <p class="status" id="formStatus" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="closing">
+  <div class="wrap">
+    <h2>Help us reach the <span>next school</span>.</h2>
+    <div class="cta" style="margin:0;justify-content:center">
+      <a class="btn btn-sun" href="#involve">Volunteer or donate</a>
+      <a class="btn" href="#book">Book a dental visit</a>
+    </div>
+  </div>
+</section>
+
+
+<div class="dock">
+  <a class="btn btn-sun" href="#involve">Join a camp</a>
+  <a class="btn" href="#book">Book a visit</a>
+</div>
+</div>
+</main>
+
+<footer class="ft" id="contact">
+  <div class="wrap">
+    <p class="word" aria-hidden="true">Dr. Molina</p>
+    <div class="fgrid">
+      <div><h4>Dr. Victoria Molina</h4><p>Dentist and founder of Tooth Fairy Volunteers.</p></div>
+      <div><h4>Visit</h4><p>Demo Plaza, Main Boulevard<br>Your City<br>Mon to Sat, 10:00 to 19:00</p></div>
+      <div><h4>Say hello</h4><p>WhatsApp +92 300 0000000<br>hello@example.com</p></div>
+      <div><h4>Follow</h4><a href="#home">Instagram @demo.handle</a><a href="#home">Facebook /demo.page</a></div>
+    </div>
+    <p class="copy">© 2026 Dr. Victoria Molina · Tooth Fairy Volunteers · Demo content</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  /* Demo WhatsApp number: replace with the clinic's number (country code first, no + or spaces). */
+  var WA_NUMBER = '923000000000';
+
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function $(id) { return document.getElementById(id); }
+
+  /* ---------- views and in-page navigation ----------
+     Links that start with # are handled here, not by the browser, so they also work
+     inside sandboxed viewers and in a downloaded copy of the file. */
+  var views = document.querySelectorAll('.view');
+  var homeView = $('home');
+  var nav = $('nav');
+  var mb = $('menuBtn');
+
+  function closeMenu() {
+    if (nav) { nav.classList.remove('open'); }
+    if (mb) { mb.setAttribute('aria-expanded', 'false'); }
+  }
+  function showView(v) {
+    views.forEach(function (x) { x.hidden = (x !== v); });
+    document.body.classList.toggle('story', v.id === 'volunteers');
+    document.querySelectorAll('.nav a').forEach(function (a) {
+      if (a.getAttribute('href') === '#volunteers' && v.id === 'volunteers') { a.setAttribute('aria-current', 'page'); }
+      else { a.removeAttribute('aria-current'); }
+    });
+  }
+  function jump(y, smooth) {
+    try { window.scrollTo({ top: y, left: 0, behavior: smooth ? 'smooth' : 'instant' }); }
+    catch (err) { window.scrollTo(0, y); }
+  }
+  function headerOffset() {
+    var h = document.querySelector('.hd');
+    return (h ? h.offsetHeight : 0) + 12;
+  }
+  function go(id, instant) {
+    var el = id ? $(id) : null;
+    if (!el) { return; }
+    var target = el.closest ? el.closest('.view') : null;
+    var cur = document.querySelector('.view:not([hidden])');
+    var switched = false;
+    if (target && target !== cur) { showView(target); switched = true; }
+    if (el.classList.contains('view')) { jump(0, false); return; }
+    var y = el.getBoundingClientRect().top + window.pageYOffset - headerOffset();
+    jump(Math.max(0, y), !(instant || switched || reduce));
+  }
+
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest ? e.target.closest('a[href^="#"]') : null;
+    if (!a) { return; }
+    var id = a.getAttribute('href').slice(1);
+    if (!id) { return; }
+    e.preventDefault();
+    closeMenu();
+    go(id, false);
+  });
+
+  function fromHash() {
+    var id = '';
+    try { id = decodeURIComponent(location.hash.replace('#', '')); } catch (err) { id = ''; }
+    if (id && $(id)) { go(id, true); }
+  }
+  window.addEventListener('hashchange', fromHash);
+  if (!document.querySelector('.view:not([hidden])') && homeView) { showView(homeView); }
+  fromHash();
+
+  /* mobile menu */
+  if (mb && nav) {
+    mb.addEventListener('click', function () {
+      var open = nav.classList.toggle('open');
+      mb.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { closeMenu(); } });
+  }
+
+  /* ---------- count-up numbers (final value is already in the HTML) ---------- */
+  function countUp(el) {
+    var end = parseInt(el.getAttribute('data-count'), 10);
+    var start = performance.now();
+    function frame(t) {
+      var p = Math.min((t - start) / 1400, 1);
+      el.textContent = Math.round(end * (1 - Math.pow(1 - p, 3))).toLocaleString('en-US');
+      if (p < 1) { requestAnimationFrame(frame); }
+    }
+    requestAnimationFrame(frame);
+  }
+  var nums = document.querySelectorAll('[data-count]');
+  if (!reduce && 'IntersectionObserver' in window && nums.length) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { io.unobserve(en.target); countUp(en.target); }
+      });
+    }, { threshold: 0.6 });
+    nums.forEach(function (n) { io.observe(n); });
+  }
+
+  /* ---------- input rules: names and WhatsApp numbers ---------- */
+  var NAME_BAD, HAS_LETTER;
+  try { NAME_BAD = new RegExp("[^\\p{L}\\s.'\\u2019-]", 'gu'); } catch (err) { NAME_BAD = /[^A-Za-z\s.'-]/g; }
+  try { HAS_LETTER = new RegExp('\\p{L}', 'u'); } catch (err) { HAS_LETTER = /[A-Za-z]/; }
+
+  function cleanName(el) {
+    var v = el.value.replace(NAME_BAD, '').replace(/\s{2,}/g, ' ');
+    if (v !== el.value) { el.value = v; }
+  }
+  /* keep digits, spaces, hyphens and brackets; a + only at the start; at most 15 digits */
+  function cleanPhone(el) {
+    var v = el.value;
+    var plus = v.charAt(0) === '+';
+    v = v.replace(/[^\d\s\-()]/g, '');
+    if (plus) { v = '+' + v; }
+    var digits = 0, out = '';
+    for (var i = 0; i < v.length; i++) {
+      var c = v.charAt(i);
+      if (/\d/.test(c)) { if (digits >= 15) { continue; } digits++; }
+      out += c;
+    }
+    if (out !== el.value) { el.value = out; }
+  }
+  /* Pakistani mobile (0300 1234567, +92 300 1234567, 92300..., 0092300...) or any international number */
+  function validPhone(v) {
+    var s = v.replace(/[\s\-()]/g, '');
+    if (/^(?:\+92|0092|92|0)3\d{9}$/.test(s)) { return true; }
+    return /^\+[1-9]\d{7,14}$/.test(s);
+  }
+  function setErr(input, msg) {
+    var s = $(input.id + 'Err');
+    if (s) { s.textContent = msg; }
+    input.setAttribute('aria-invalid', msg ? 'true' : 'false');
+  }
+  function checkName(input, show) {
+    var v = input.value.trim();
+    var ok = v.length >= 2 && HAS_LETTER.test(v);
+    if (show) { setErr(input, ok ? '' : 'Please enter your name, letters only.'); }
+    return ok;
+  }
+  function checkPhone(input, show) {
+    var ok = validPhone(input.value);
+    if (show) { setErr(input, ok ? '' : 'Enter a valid number, like 0300 1234567 or +92 300 1234567.'); }
+    return ok;
+  }
+  function wire(nameEl, phoneEl) {
+    nameEl.addEventListener('input', function () {
+      cleanName(nameEl);
+      if (nameEl.getAttribute('aria-invalid') === 'true') { checkName(nameEl, true); }
+    });
+    nameEl.addEventListener('blur', function () { if (nameEl.value) { checkName(nameEl, true); } });
+    phoneEl.addEventListener('input', function () {
+      cleanPhone(phoneEl);
+      if (phoneEl.getAttribute('aria-invalid') === 'true') { checkPhone(phoneEl, true); }
+    });
+    phoneEl.addEventListener('blur', function () { if (phoneEl.value) { checkPhone(phoneEl, true); } });
+  }
+  function waHref(text) { return 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(text); }
+  function showResult(el, message, waText) {
+    el.textContent = message;
+    el.appendChild(document.createElement('br'));
+    var a = document.createElement('a');
+    a.className = 'btn btn-mint btn-sm';
+    a.href = waHref(waText);
+    a.target = '_blank';
+    a.rel = 'noopener';
+    a.textContent = 'Send on WhatsApp';
+    el.appendChild(a);
+  }
+
+  /* ---------- booking widget (demo: nothing is sent until the WhatsApp button is tapped) ---------- */
+  var form = $('bookForm');
+  if (form) {
+    var daysEl = $('days');
+    var slotsEl = $('slots');
+    var sumEl = $('summary');
+    var stEl = $('bookStatus');
+    var nextEl = $('nextSlot');
+    var times = ['10:00', '11:00', '12:00', '14:00', '15:00', '16:00', '17:00', '18:00'];
+    var WD = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    var MO = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    var now = new Date();
+    var days = [];
+    var d = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    while (days.length < 7) {
+      if (d.getDay() !== 0) { days.push(new Date(d)); }
+      d.setDate(d.getDate() + 1);
+    }
+
+    function isTaken(dt, k) { return (dt.getDate() + k) % 4 === 0; }
+    function isPast(dt, t) {
+      var same = dt.getFullYear() === now.getFullYear() && dt.getMonth() === now.getMonth() && dt.getDate() === now.getDate();
+      return same && parseInt(t, 10) <= now.getHours();
+    }
+    function dayLabel(dt) { return WD[dt.getDay()] + ' ' + dt.getDate() + ' ' + MO[dt.getMonth()]; }
+
+    var dh = '';
+    days.forEach(function (dt, i) {
+      dh += '<label class="opt"><input type="radio" name="day" value="' + i + '"' + (i === 0 ? ' checked' : '') + '><span><b>' + WD[dt.getDay()] + '</b><i>' + dt.getDate() + '</i><small>' + MO[dt.getMonth()] + '</small></span></label>';
+    });
+    daysEl.innerHTML = dh;
+
+    function selDay() { var r = form.querySelector('input[name="day"]:checked'); return r ? parseInt(r.value, 10) : 0; }
+    function selSlot() { var r = form.querySelector('input[name="slot"]:checked'); return r ? r.value : ''; }
+    function selSvc() { var r = form.querySelector('input[name="svc"]:checked'); return r ? r.getAttribute('data-label') : ''; }
+
+    function updateSummary() {
+      var slot = selSlot();
+      sumEl.textContent = slot ? selSvc() + ' · ' + dayLabel(days[selDay()]) + ' · ' + slot : 'No free times on this day. Please pick another day.';
+    }
+    function renderSlots() {
+      var dt = days[selDay()];
+      var h = '';
+      times.forEach(function (t, k) {
+        var off = isTaken(dt, k) || isPast(dt, t);
+        h += '<label class="opt"><input type="radio" name="slot" value="' + t + '"' + (off ? ' disabled' : '') + '><span>' + t + '</span></label>';
+      });
+      slotsEl.innerHTML = h;
+      var pick = slotsEl.querySelectorAll('input:not(:disabled)');
+      if (pick.length) { pick[0].checked = true; }
+      updateSummary();
+    }
+    function firstFreeOverall() {
+      for (var i = 0; i < days.length; i++) {
+        for (var k = 0; k < times.length; k++) {
+          if (!isTaken(days[i], k) && !isPast(days[i], times[k])) { return dayLabel(days[i]) + ' · ' + times[k]; }
+        }
+      }
+      return '';
+    }
+    if (nextEl) { var nf = firstFreeOverall(); if (nf) { nextEl.textContent = nf; } }
+
+    form.addEventListener('change', function (e) {
+      stEl.textContent = '';
+      if (e.target.name === 'day') { renderSlots(); } else { updateSummary(); }
+    });
+
+    document.querySelectorAll('a[data-service]').forEach(function (a) {
+      a.addEventListener('click', function () {
+        var r = form.querySelector('input[name="svc"][value="' + a.getAttribute('data-service') + '"]');
+        if (r) { r.checked = true; stEl.textContent = ''; updateSummary(); }
+      });
+    });
+
+    var bName = $('bName'), bPhone = $('bPhone');
+    wire(bName, bPhone);
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var okN = checkName(bName, true);
+      var okP = checkPhone(bPhone, true);
+      if (!selSlot()) { stEl.textContent = 'Please choose a day that has a free time.'; return; }
+      if (!okN) { stEl.textContent = ''; bName.focus(); return; }
+      if (!okP) { stEl.textContent = ''; bPhone.focus(); return; }
+      var name = bName.value.trim();
+      var phone = bPhone.value.trim();
+      showResult(stEl,
+        'Thank you, ' + name + '. Your request for ' + sumEl.textContent + ' is ready. This is a demo, so nothing is sent until you tap the WhatsApp button.',
+        'Hello Dr. Molina, I would like to book: ' + sumEl.textContent + '. Name: ' + name + '. WhatsApp: ' + phone + '.');
+    });
+
+    renderSlots();
+  }
+
+  /* ---------- volunteer form (demo) ---------- */
+  var jf = $('joinForm');
+  if (jf) {
+    var js = $('formStatus');
+    var fName = $('fName'), fPhone = $('fPhone');
+    wire(fName, fPhone);
+    jf.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var okN = checkName(fName, true);
+      var okP = checkPhone(fPhone, true);
+      if (!okN) { js.textContent = ''; fName.focus(); return; }
+      if (!okP) { js.textContent = ''; fPhone.focus(); return; }
+      var name = fName.value.trim();
+      var phone = fPhone.value.trim();
+      var role = $('fRole').value;
+      var msg = $('fMsg').value.trim();
+      showResult(js,
+        'Thank you, ' + name + '. This is a demo, so nothing is sent until you tap the WhatsApp button.',
+        'Hello, I would like to volunteer with Tooth Fairy Volunteers. I am a ' + role + '. Name: ' + name + '. WhatsApp: ' + phone + '.' + (msg ? ' Message: ' + msg : ''));
+      jf.reset();
+      setErr(fName, '');
+      setErr(fPhone, '');
+    });
+  }
+})();
+
+</script>
+</body>
+</html>
